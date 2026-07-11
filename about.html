@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — DuDu Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero {
+      background: linear-gradient(135deg, #f8f9fc 0%, #eff6ff 100%);
+      padding: 9rem 2.5rem 5rem;
+      text-align: center;
+    }
+    .page-hero-title { font-family: var(--font-head); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -0.04em; color: var(--ink); margin-bottom: 1rem; }
+    .page-hero-sub { font-size: 1.05rem; color: var(--ink-3); max-width: 520px; margin: 0 auto; }
+
+    /* STORY */
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .story-text p { font-size: 0.97rem; color: var(--ink-2); margin-bottom: 1rem; line-height: 1.75; }
+    .story-visual { background: linear-gradient(135deg, var(--accent-lt), #e0e7ff); border-radius: 16px; padding: 3rem; display: flex; flex-direction: column; gap: 1rem; }
+    .story-visual-item { background: #fff; border-radius: 10px; padding: 1.2rem 1.4rem; box-shadow: var(--shadow-sm); }
+    .story-visual-year { font-family: var(--font-head); font-size: 0.78rem; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 0.2rem; }
+    .story-visual-event { font-size: 0.88rem; color: var(--ink); font-weight: 500; }
+
+    /* VALUES */
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .value-card { text-align: center; }
+    .value-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+    .value-title { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+    .value-desc { font-size: 0.87rem; color: var(--ink-3); line-height: 1.65; }
+
+    /* TEAM */
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
+    .team-card { text-align: center; }
+    .team-avatar { width: 80px; height: 80px; border-radius: 50%; background: var(--accent-lt); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem; border: 3px solid var(--border); }
+    .team-name { font-family: var(--font-head); font-size: 0.95rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; }
+    .team-role { font-size: 0.8rem; color: var(--accent); font-weight: 500; margin-bottom: 0.5rem; }
+    .team-bio { font-size: 0.8rem; color: var(--ink-3); line-height: 1.5; }
+
+    /* STATS */
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
+    .stat-box { text-align: center; padding: 2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; }
+    .stat-box-num { font-family: var(--font-head); font-size: 2.2rem; font-weight: 800; color: var(--accent); letter-spacing: -0.04em; display: block; margin-bottom: 0.3rem; }
+    .stat-box-lbl { font-size: 0.82rem; color: var(--ink-3); }
+
+    /* CTA */
+    .cta-banner { background: var(--accent); border-radius: 16px; padding: 3.5rem; text-align: center; color: #fff; }
+    .cta-banner h2 { font-family: var(--font-head); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 0.8rem; letter-spacing: -0.03em; }
+    .cta-banner p { opacity: 0.85; margin-bottom: 2rem; }
+    .btn-white { background: #fff !important; color: var(--accent) !important; }
+
+    @media (max-width: 768px) {
+      .page-hero { padding: 7rem 1.4rem 3rem; }
+      .story-grid { grid-template-columns: 1fr; }
+      .story-visual { display: none; }
+      .values-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .cta-banner { padding: 2rem; }
+    }
+
+    @media (max-width: 480px) {
+      .team-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="index.html">DuDu<span>.</span></a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Get a Quote</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <span class="section-tag">About Us</span>
+      <h1 class="page-hero-title">We Are DuDu Studio</h1>
+      <p class="page-hero-sub">A passionate team of designers and developers building digital products that make a real difference.</p>
+    </div>
+  </div>
+
+  <!-- STORY -->
+  <section class="section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-text">
+          <span class="section-tag">Our Story</span>
+          <h2 class="section-title">From a Small Team to a Trusted Agency</h2>
+          <p>DuDu Studio was founded in 2020 with a simple mission: build digital products that actually work for people. What started as two developers working from a small office in Bishoftu, Ethiopia, has grown into a full-service digital agency.</p>
+          <p>Over the years, we've worked with startups, SMEs, and enterprise clients across 15+ industries — helping them launch products, scale platforms, and grow their online presence.</p>
+          <p>We believe great software is built on strong relationships. Every project starts with listening, understanding your goals, and then crafting a solution that fits perfectly.</p>
+          <a href="contact.html" class="btn-primary" style="margin-top:1rem;">Work With Us →</a>
+        </div>
+        <div class="story-visual">
+          <div class="story-visual-item"><div class="story-visual-year">2020</div><div class="story-visual-event">DuDu Studio founded in Bishoftu, Ethiopia</div></div>
+          <div class="story-visual-item"><div class="story-visual-year">2021</div><div class="story-visual-event">First 10 clients onboarded, team grew to 5</div></div>
+          <div class="story-visual-item"><div class="story-visual-year">2022</div><div class="story-visual-event">Launched mobile development service line</div></div>
+          <div class="story-visual-item"><div class="story-visual-year">2023</div><div class="story-visual-event">50+ projects completed across 10 countries</div></div>
+          <div class="story-visual-item"><div class="story-visual-year">2025</div><div class="story-visual-event">120+ projects, 98% client satisfaction rate</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="stats-row">
+        <div class="stat-box"><span class="stat-box-num">120+</span><span class="stat-box-lbl">Projects Completed</span></div>
+        <div class="stat-box"><span class="stat-box-num">98%</span><span class="stat-box-lbl">Client Satisfaction</span></div>
+        <div class="stat-box"><span class="stat-box-num">15+</span><span class="stat-box-lbl">Industries Served</span></div>
+        <div class="stat-box"><span class="stat-box-num">12</span><span class="stat-box-lbl">Team Members</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Our Values</span>
+        <h2 class="section-title">What Drives Us Every Day</h2>
+        <p class="section-sub">Our values aren't just words on a wall — they shape every decision we make.</p>
+      </div>
+      <div class="values-grid">
+        <div class="card value-card"><span class="value-icon">🎯</span><div class="value-title">Results-Driven</div><p class="value-desc">We measure success by the impact we create for our clients, not just by shipping code.</p></div>
+        <div class="card value-card"><span class="value-icon">🤝</span><div class="value-title">Client-First</div><p class="value-desc">Your goals are our goals. We listen deeply and build solutions that truly fit your needs.</p></div>
+        <div class="card value-card"><span class="value-icon">✨</span><div class="value-title">Quality Always</div><p class="value-desc">We never cut corners. Every line of code and pixel of design meets our high standards.</p></div>
+        <div class="card value-card"><span class="value-icon">🔄</span><div class="value-title">Continuous Growth</div><p class="value-desc">We stay on the cutting edge of technology so our clients always get the best solutions.</p></div>
+        <div class="card value-card"><span class="value-icon">💬</span><div class="value-title">Open Communication</div><p class="value-desc">No surprises. We keep clients informed at every step of the project journey.</p></div>
+        <div class="card value-card"><span class="value-icon">🌍</span><div class="value-title">Global Mindset</div><p class="value-desc">We build for the world, bringing global best practices to every project we take on.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Our Team</span>
+        <h2 class="section-title">The People Behind DuDu</h2>
+        <p class="section-sub">A diverse team of thinkers, builders, and creators united by a love for great software.</p>
+      </div>
+      <div class="team-grid">
+        <div class="card team-card"><div class="team-avatar">👨‍💻</div><div class="team-name">Alex Tesfaye</div><div class="team-role">CEO & Lead Developer</div><p class="team-bio">Full-stack engineer with 8 years of experience building scalable products.</p></div>
+        <div class="card team-card"><div class="team-avatar">👩‍🎨</div><div class="team-name">Liya Bekele</div><div class="team-role">Head of Design</div><p class="team-bio">UI/UX designer passionate about creating intuitive and beautiful experiences.</p></div>
+        <div class="card team-card"><div class="team-avatar">👨‍📱</div><div class="team-name">Samuel Girma</div><div class="team-role">Mobile Developer</div><p class="team-bio">React Native specialist with a knack for smooth, performant mobile apps.</p></div>
+        <div class="card team-card"><div class="team-avatar">👩‍📊</div><div class="team-name">Hana Tadesse</div><div class="team-role">Project Manager</div><p class="team-bio">Keeps every project on track, on time, and within budget — always.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Let's Build Something Together</h2>
+        <p>Ready to start your project? We'd love to hear from you.</p>
+        <a href="contact.html" class="btn-primary btn-white">Get in Touch →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">DuDu<span>.</span></div>
+          <p class="footer-desc">A digital agency building modern websites, apps, and experiences that drive real results.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Pages</div>
+          <ul class="footer-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-list">
+            <li><a href="services.html">Web Development</a></li>
+            <li><a href="services.html">Mobile Apps</a></li>
+            <li><a href="services.html">UI/UX Design</a></li>
+            <li><a href="services.html">SEO & Marketing</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-list">
+            <li><a href="#">📍 Bishoftu, Ethiopia</a></li>
+            <li><a href="#">✉️ hello@DuDu.studio</a></li>
+            <li><a href="#">📞 +251 900 000 000</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 DuDu Studio. All rights reserved.</span>
+        <span>Built by Duresa Chemeda</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('nav-links').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

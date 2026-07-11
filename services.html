@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — DuDu Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero { background: linear-gradient(135deg, #f8f9fc 0%, #eff6ff 100%); padding: 9rem 2.5rem 5rem; text-align: center; }
+    .page-hero-title { font-family: var(--font-head); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -0.04em; color: var(--ink); margin-bottom: 1rem; }
+    .page-hero-sub { font-size: 1.05rem; color: var(--ink-3); max-width: 520px; margin: 0 auto; }
+
+    /* SERVICE CARDS */
+    .services-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .service-row { display: grid; grid-template-columns: 80px 1fr auto; gap: 2rem; align-items: center; padding: 2rem; }
+    .service-row-icon { width: 64px; height: 64px; background: var(--accent-lt); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0; }
+    .service-row-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.4rem; }
+    .service-row-desc { font-size: 0.88rem; color: var(--ink-3); line-height: 1.65; margin-bottom: 0.8rem; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .service-tag { font-size: 0.72rem; font-weight: 600; color: var(--accent); background: var(--accent-lt); padding: 0.2rem 0.6rem; border-radius: 20px; }
+    .service-price { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--ink); text-align: right; white-space: nowrap; }
+    .service-price span { font-size: 0.75rem; font-weight: 400; color: var(--ink-3); display: block; }
+
+    /* PROCESS */
+    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; position: relative; }
+    .process-grid::before { content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 2px; background: var(--border); z-index: 0; }
+    .process-step { text-align: center; position: relative; z-index: 1; }
+    .process-num { width: 56px; height: 56px; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-size: 1.1rem; font-weight: 800; margin: 0 auto 1rem; box-shadow: 0 0 0 6px var(--accent-lt); }
+    .process-title { font-family: var(--font-head); font-size: 0.95rem; font-weight: 700; color: var(--ink); margin-bottom: 0.4rem; }
+    .process-desc { font-size: 0.82rem; color: var(--ink-3); line-height: 1.55; }
+
+    /* PRICING */
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .pricing-card { border-radius: 12px; padding: 2rem; border: 1.5px solid var(--border); position: relative; transition: transform 0.2s, box-shadow 0.2s; }
+    .pricing-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .pricing-card.featured { border-color: var(--accent); background: var(--accent); color: #fff; }
+    .pricing-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #f59e0b; color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.8rem; border-radius: 20px; white-space: nowrap; }
+    .pricing-plan { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .pricing-card.featured .pricing-plan { color: rgba(255,255,255,0.75); }
+    .pricing-price { font-family: var(--font-head); font-size: 2.2rem; font-weight: 800; letter-spacing: -0.04em; color: var(--ink); margin-bottom: 0.3rem; }
+    .pricing-card.featured .pricing-price { color: #fff; }
+    .pricing-period { font-size: 0.8rem; color: var(--ink-3); margin-bottom: 1.5rem; }
+    .pricing-card.featured .pricing-period { color: rgba(255,255,255,0.7); }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; }
+    .pricing-features li { font-size: 0.87rem; color: var(--ink-2); display: flex; align-items: center; gap: 0.5rem; }
+    .pricing-card.featured .pricing-features li { color: rgba(255,255,255,0.9); }
+    .pricing-features li::before { content: '✓'; color: var(--accent); font-weight: 700; }
+    .pricing-card.featured .pricing-features li::before { color: #fff; }
+    .btn-pricing { display: block; text-align: center; padding: 0.8rem; border-radius: 8px; font-family: var(--font-head); font-size: 0.9rem; font-weight: 700; text-decoration: none; border: 1.5px solid var(--accent); color: var(--accent); transition: background 0.15s, color 0.15s; }
+    .btn-pricing:hover { background: var(--accent); color: #fff; }
+    .pricing-card.featured .btn-pricing { background: #fff; color: var(--accent); border-color: #fff; }
+    .pricing-card.featured .btn-pricing:hover { background: #eff6ff; }
+
+    /* CTA */
+    .cta-banner { background: var(--accent); border-radius: 16px; padding: 3.5rem; text-align: center; color: #fff; }
+    .cta-banner h2 { font-family: var(--font-head); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 0.8rem; letter-spacing: -0.03em; }
+    .cta-banner p { opacity: 0.85; margin-bottom: 2rem; }
+    .btn-white { background: #fff !important; color: var(--accent) !important; }
+
+    @media (max-width: 768px) {
+      .page-hero { padding: 7rem 1.4rem 3rem; }
+      .service-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+      .service-price { display: none; }
+      .process-grid { grid-template-columns: 1fr 1fr; }
+      .process-grid::before { display: none; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .cta-banner { padding: 2rem; }
+    }
+
+    @media (max-width: 480px) {
+      .process-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="index.html">DuDu<span>.</span></a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Get a Quote</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <span class="section-tag">Our Services</span>
+      <h1 class="page-hero-title">Everything You Need to Succeed Online</h1>
+      <p class="page-hero-sub">From design to deployment — we offer end-to-end digital services tailored to your goals.</p>
+    </div>
+  </div>
+
+  <!-- SERVICES LIST -->
+  <section class="section">
+    <div class="container">
+      <div class="services-list">
+        <div class="card service-row">
+          <div class="service-row-icon">🌐</div>
+          <div>
+            <div class="service-row-title">Web Development</div>
+            <p class="service-row-desc">We build fast, secure, and scalable websites tailored to your brand. From landing pages to full e-commerce platforms — we handle it all with clean, maintainable code.</p>
+            <div class="service-tags"><span class="service-tag">React</span><span class="service-tag">Node.js</span><span class="service-tag">Next.js</span><span class="service-tag">PostgreSQL</span><span class="service-tag">MongoDB</span></div>
+          </div>
+          <div class="service-price">From $500<span>per project</span></div>
+        </div>
+        <div class="card service-row">
+          <div class="service-row-icon">📱</div>
+          <div>
+            <div class="service-row-title">Mobile App Development</div>
+            <p class="service-row-desc">Cross-platform mobile apps built with React Native that work seamlessly on both iOS and Android. We focus on performance, usability, and beautiful UX.</p>
+            <div class="service-tags"><span class="service-tag">React Native</span><span class="service-tag">Expo</span><span class="service-tag">Firebase</span><span class="service-tag">REST APIs</span></div>
+          </div>
+          <div class="service-price">From $800<span>per project</span></div>
+        </div>
+        <div class="card service-row">
+          <div class="service-row-icon">🎨</div>
+          <div>
+            <div class="service-row-title">UI/UX Design</div>
+            <p class="service-row-desc">User-centered design that balances aesthetics and functionality. We create wireframes, prototypes, and final designs that guide users naturally toward your goals.</p>
+            <div class="service-tags"><span class="service-tag">Figma</span><span class="service-tag">Prototyping</span><span class="service-tag">Wireframing</span><span class="service-tag">Design Systems</span></div>
+          </div>
+          <div class="service-price">From $300<span>per project</span></div>
+        </div>
+        <div class="card service-row">
+          <div class="service-row-icon">☁️</div>
+          <div>
+            <div class="service-row-title">Cloud & DevOps</div>
+            <p class="service-row-desc">We set up scalable cloud infrastructure, automate deployments, and ensure your product is always running at peak performance with minimal downtime.</p>
+            <div class="service-tags"><span class="service-tag">AWS</span><span class="service-tag">Docker</span><span class="service-tag">CI/CD</span><span class="service-tag">Nginx</span><span class="service-tag">Linux</span></div>
+          </div>
+          <div class="service-price">From $400<span>per project</span></div>
+        </div>
+        <div class="card service-row">
+          <div class="service-row-icon">📈</div>
+          <div>
+            <div class="service-row-title">SEO & Digital Marketing</div>
+            <p class="service-row-desc">Data-driven SEO and marketing strategies that increase your visibility, drive qualified traffic, and convert visitors into loyal customers.</p>
+            <div class="service-tags"><span class="service-tag">SEO</span><span class="service-tag">Google Analytics</span><span class="service-tag">Content Strategy</span><span class="service-tag">Social Media</span></div>
+          </div>
+          <div class="service-price">From $200<span>per month</span></div>
+        </div>
+        <div class="card service-row">
+          <div class="service-row-icon">🛡️</div>
+          <div>
+            <div class="service-row-title">Maintenance & Support</div>
+            <p class="service-row-desc">Ongoing support plans that keep your product secure, updated, and running smoothly — so you can focus on growing your business.</p>
+            <div class="service-tags"><span class="service-tag">Bug Fixes</span><span class="service-tag">Security Updates</span><span class="service-tag">Performance</span><span class="service-tag">24/7 Monitoring</span></div>
+          </div>
+          <div class="service-price">From $150<span>per month</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Our Process</span>
+        <h2 class="section-title">How We Work</h2>
+        <p class="section-sub">A clear, structured process that keeps you informed and in control at every step.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-step"><div class="process-num">1</div><div class="process-title">Discovery</div><p class="process-desc">We learn about your business, goals, and requirements through in-depth consultation.</p></div>
+        <div class="process-step"><div class="process-num">2</div><div class="process-title">Planning</div><p class="process-desc">We create a detailed roadmap, timeline, and technical specification for your project.</p></div>
+        <div class="process-step"><div class="process-num">3</div><div class="process-title">Build</div><p class="process-desc">Our team designs and develops your product with regular check-ins and updates.</p></div>
+        <div class="process-step"><div class="process-num">4</div><div class="process-title">Launch</div><p class="process-desc">We test, deploy, and hand over your product — then support you after launch.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Pricing</span>
+        <h2 class="section-title">Simple, Transparent Pricing</h2>
+        <p class="section-sub">No hidden fees. Pick a plan that works for your budget and goals.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-plan">Starter</div>
+          <div class="pricing-price">$500</div>
+          <div class="pricing-period">one-time payment</div>
+          <ul class="pricing-features">
+            <li>5-page responsive website</li>
+            <li>Basic SEO setup</li>
+            <li>Contact form integration</li>
+            <li>2 rounds of revisions</li>
+            <li>30-day support</li>
+          </ul>
+          <a href="contact.html" class="btn-pricing">Get Started</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Most Popular</div>
+          <div class="pricing-plan">Pro</div>
+          <div class="pricing-price">$1,200</div>
+          <div class="pricing-period">one-time payment</div>
+          <ul class="pricing-features">
+            <li>Full custom web app</li>
+            <li>Backend API development</li>
+            <li>Database design</li>
+            <li>Authentication system</li>
+            <li>Unlimited revisions</li>
+            <li>90-day support</li>
+          </ul>
+          <a href="contact.html" class="btn-pricing">Get Started</a>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-plan">Enterprise</div>
+          <div class="pricing-price">Custom</div>
+          <div class="pricing-period">tailored to your needs</div>
+          <ul class="pricing-features">
+            <li>Everything in Pro</li>
+            <li>Mobile app development</li>
+            <li>Cloud infrastructure setup</li>
+            <li>Dedicated project manager</li>
+            <li>SLA agreement</li>
+            <li>12-month support</li>
+          </ul>
+          <a href="contact.html" class="btn-pricing">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Not Sure Which Service You Need?</h2>
+        <p>Let's talk — we'll help you figure out the best approach for your project.</p>
+        <a href="contact.html" class="btn-primary btn-white">Book a Free Call →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">DuDu<span>.</span></div>
+          <p class="footer-desc">A digital agency building modern websites, apps, and experiences that drive real results.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Pages</div>
+          <ul class="footer-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-list">
+            <li><a href="services.html">Web Development</a></li>
+            <li><a href="services.html">Mobile Apps</a></li>
+            <li><a href="services.html">UI/UX Design</a></li>
+            <li><a href="services.html">SEO & Marketing</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-list">
+            <li><a href="#">📍 Bishoftu, Ethiopia</a></li>
+            <li><a href="#">✉️ hello@DuDu.studio</a></li>
+            <li><a href="#">📞 +251 900 000 000</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 DuDu Studio. All rights reserved.</span>
+        <span>Built by Duresa Chemeda</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('nav-links').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

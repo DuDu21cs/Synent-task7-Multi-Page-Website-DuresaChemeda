@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DuDu Studio | Digital Agency</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* HOME SPECIFIC */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 7rem 2.5rem 4rem;
+      background: linear-gradient(135deg, #f8f9fc 0%, #eff6ff 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(37,99,235,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-lt);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title span { color: var(--accent); }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--ink-3);
+      margin-bottom: 2.2rem;
+      max-width: 460px;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-stat-num {
+      display: block;
+      font-family: var(--font-head);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--ink);
+      letter-spacing: -0.04em;
+    }
+
+    .hero-stat-lbl {
+      font-size: 0.78rem;
+      color: var(--ink-3);
+    }
+
+    .hero-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .hero-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-card:nth-child(2) { margin-top: 1.5rem; }
+    .hero-card:nth-child(3) { margin-top: -1.5rem; }
+
+    .hero-card-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .hero-card-title { font-family: var(--font-head); font-size: 0.88rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+    .hero-card-desc { font-size: 0.78rem; color: var(--ink-3); }
+
+    /* SERVICES PREVIEW */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+
+    .service-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .service-title {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .service-desc { font-size: 0.87rem; color: var(--ink-3); line-height: 1.65; }
+
+    /* WHY US */
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .why-list { display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .why-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .why-icon {
+      width: 40px; height: 40px;
+      background: var(--accent-lt);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .why-text-title { font-family: var(--font-head); font-size: 0.95rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; }
+    .why-text-desc { font-size: 0.85rem; color: var(--ink-3); }
+
+    .why-visual {
+      background: linear-gradient(135deg, var(--accent-lt), #e0e7ff);
+      border-radius: 16px;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .why-visual-stat {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .why-visual-stat-num { font-family: var(--font-head); font-size: 1.4rem; font-weight: 800; color: var(--accent); }
+    .why-visual-stat-lbl { font-size: 0.82rem; color: var(--ink-3); }
+
+    /* TESTIMONIALS */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+
+    .testi-stars { color: #f59e0b; font-size: 0.85rem; margin-bottom: 0.8rem; }
+    .testi-text { font-size: 0.88rem; color: var(--ink-2); line-height: 1.65; margin-bottom: 1.2rem; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 0.7rem; }
+    .testi-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--accent-lt); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+    .testi-name { font-family: var(--font-head); font-size: 0.85rem; font-weight: 700; color: var(--ink); }
+    .testi-role { font-size: 0.75rem; color: var(--ink-3); }
+
+    /* CTA BANNER */
+    .cta-banner {
+      background: var(--accent);
+      border-radius: 16px;
+      padding: 3.5rem;
+      text-align: center;
+      color: #fff;
+    }
+
+    .cta-banner h2 { font-family: var(--font-head); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 0.8rem; letter-spacing: -0.03em; }
+    .cta-banner p { opacity: 0.85; margin-bottom: 2rem; }
+    .btn-white { background: #fff !important; color: var(--accent) !important; }
+    .btn-white:hover { background: #f0f9ff !important; }
+
+    @media (max-width: 768px) {
+      .hero { padding: 6rem 1.4rem 3rem; }
+      .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-visual { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .why-visual { display: none; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .cta-banner { padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="index.html">DuDu<span>.</span></a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="nav-cta">Get a Quote</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">✦ Digital Agency</div>
+        <h1 class="hero-title">We Build <span>Digital</span> Products That Matter</h1>
+        <p class="hero-desc">DuDu Studio crafts modern websites, apps, and digital experiences that help businesses grow and stand out online.</p>
+        <div class="hero-btns">
+          <a href="services.html" class="btn-primary">Explore Services →</a>
+          <a href="about.html" class="btn-outline">Our Story</a>
+        </div>
+        <div class="hero-stats">
+          <div><span class="hero-stat-num">120+</span><span class="hero-stat-lbl">Projects Done</span></div>
+          <div><span class="hero-stat-num">98%</span><span class="hero-stat-lbl">Client Satisfaction</span></div>
+          <div><span class="hero-stat-num">5 yrs</span><span class="hero-stat-lbl">Experience</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card"><div class="hero-card-icon">🌐</div><div class="hero-card-title">Web Development</div><div class="hero-card-desc">Fast, responsive websites</div></div>
+        <div class="hero-card"><div class="hero-card-icon">📱</div><div class="hero-card-title">Mobile Apps</div><div class="hero-card-desc">iOS & Android ready</div></div>
+        <div class="hero-card"><div class="hero-card-icon">🎨</div><div class="hero-card-title">UI/UX Design</div><div class="hero-card-desc">Beautiful interfaces</div></div>
+        <div class="hero-card"><div class="hero-card-icon">📈</div><div class="hero-card-title">SEO & Growth</div><div class="hero-card-desc">Rank higher, grow faster</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">What We Do</span>
+        <h2 class="section-title">Our Core Services</h2>
+        <p class="section-sub">From concept to launch — we handle every part of your digital journey.</p>
+      </div>
+      <div class="services-grid">
+        <div class="card"><span class="service-icon">🌐</span><div class="service-title">Web Development</div><p class="service-desc">Clean, fast, and responsive websites built with modern technologies tailored to your business goals.</p></div>
+        <div class="card"><span class="service-icon">📱</span><div class="service-title">Mobile Development</div><p class="service-desc">Cross-platform mobile apps for iOS and Android that deliver seamless user experiences.</p></div>
+        <div class="card"><span class="service-icon">🎨</span><div class="service-title">UI/UX Design</div><p class="service-desc">User-centered design that looks great and converts visitors into customers.</p></div>
+        <div class="card"><span class="service-icon">☁️</span><div class="service-title">Cloud & DevOps</div><p class="service-desc">Scalable infrastructure, CI/CD pipelines, and cloud deployment on AWS, GCP, or Azure.</p></div>
+        <div class="card"><span class="service-icon">📈</span><div class="service-title">SEO & Marketing</div><p class="service-desc">Data-driven strategies to boost your visibility and attract the right audience online.</p></div>
+        <div class="card"><span class="service-icon">🛡️</span><div class="service-title">Maintenance & Support</div><p class="service-desc">Ongoing support, updates, and security monitoring to keep your product running smoothly.</p></div>
+      </div>
+      <div style="text-align:center;margin-top:2.5rem;">
+        <a href="services.html" class="btn-outline">View All Services →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="why-grid">
+        <div>
+          <span class="section-tag">Why DuDu</span>
+          <h2 class="section-title">Built for Results, Not Just Looks</h2>
+          <p class="section-sub">We don't just make things pretty — we build digital products that perform.</p>
+          <div class="why-list">
+            <div class="why-item"><div class="why-icon">⚡</div><div><div class="why-text-title">Fast Delivery</div><div class="why-text-desc">We move quickly without cutting corners, delivering on time every time.</div></div></div>
+            <div class="why-item"><div class="why-icon">🔍</div><div><div class="why-text-title">Transparent Process</div><div class="why-text-desc">Weekly updates, open communication, and no hidden surprises.</div></div></div>
+            <div class="why-item"><div class="why-icon">🤝</div><div><div class="why-text-title">Long-term Partnership</div><div class="why-text-desc">We're not just vendors — we're partners invested in your success.</div></div></div>
+            <div class="why-item"><div class="why-icon">🏆</div><div><div class="why-text-title">Proven Track Record</div><div class="why-text-desc">120+ successful projects across 15+ industries worldwide.</div></div></div>
+          </div>
+        </div>
+        <div class="why-visual">
+          <div class="why-visual-stat"><div><div class="why-visual-stat-num">120+</div><div class="why-visual-stat-lbl">Projects Completed</div></div></div>
+          <div class="why-visual-stat"><div><div class="why-visual-stat-num">98%</div><div class="why-visual-stat-lbl">Client Satisfaction Rate</div></div></div>
+          <div class="why-visual-stat"><div><div class="why-visual-stat-num">15+</div><div class="why-visual-stat-lbl">Industries Served</div></div></div>
+          <div class="why-visual-stat"><div><div class="why-visual-stat-num">5 yrs</div><div class="why-visual-stat-lbl">In the Industry</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Testimonials</span>
+        <h2 class="section-title">What Our Clients Say</h2>
+        <p class="section-sub">Don't take our word for it — hear it from the people we've worked with.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="card"><div class="testi-stars">★★★★★</div><p class="testi-text">"DuDu delivered our e-commerce platform on time and beyond our expectations. The attention to detail was incredible."</p><div class="testi-author"><div class="testi-avatar">👩</div><div><div class="testi-name">Sara M.</div><div class="testi-role">CEO, ShopEase</div></div></div></div>
+        <div class="card"><div class="testi-stars">★★★★★</div><p class="testi-text">"The team at DuDu completely transformed our brand's online presence. Traffic increased by 300% in just 3 months."</p><div class="testi-author"><div class="testi-avatar">👨</div><div><div class="testi-name">James K.</div><div class="testi-role">Founder, TechFlow</div></div></div></div>
+        <div class="card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Professional, responsive, and incredibly talented. DuDu is the only agency I'd trust with my projects going forward."</p><div class="testi-author"><div class="testi-avatar">👩</div><div><div class="testi-name">Lena R.</div><div class="testi-role">Marketing Director, Bloom</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Ready to Build Something Great?</h2>
+        <p>Let's turn your idea into a product people love. Get a free consultation today.</p>
+        <a href="contact.html" class="btn-primary btn-white">Start a Project →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">DuDu<span>.</span></div>
+          <p class="footer-desc">A digital agency building modern websites, apps, and experiences that drive real results.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Pages</div>
+          <ul class="footer-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-list">
+            <li><a href="services.html">Web Development</a></li>
+            <li><a href="services.html">Mobile Apps</a></li>
+            <li><a href="services.html">UI/UX Design</a></li>
+            <li><a href="services.html">SEO & Marketing</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-list">
+            <li><a href="#">📍 Bishoftu, Ethiopia</a></li>
+            <li><a href="#">✉️ hello@DuDu.studio</a></li>
+            <li><a href="#">📞 +251 900 000 000</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 DuDu Studio. All rights reserved.</span>
+        <span>Built by Duresa Chemeda</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('nav-links').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
