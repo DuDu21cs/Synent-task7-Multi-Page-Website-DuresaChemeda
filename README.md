@@ -8,10 +8,10 @@ The website demonstrates best practices in front-end development, including resp
 
 ## 🚀 Live Demo
 
-🌍 **GitHub Pages:**  
-https://dudu21cs.github.io/Synent-task7-Multi-Page-Website-DuresaChemeda/
+watch the demo here 
+ https://dudu21cs.github.io/Synent-task7-Multi-Page-Website-DuresaChemeda/
+ 
 
-> Enable GitHub Pages in your repository settings to activate the live demo.
 
 ---
 
