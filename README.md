@@ -6,30 +6,12 @@ The website demonstrates best practices in front-end development, including resp
 
 ---
 
-## 🚀 Live Demo
+## 📸 Preview -  Live Demo
 
 watch the demo here 
  https://dudu21cs.github.io/Synent-task7-Multi-Page-Website-DuresaChemeda/
  
-
-
 ---
-
-## 📸 Preview
-
-Add screenshots of your website here.
-
-### Home Page
-
-![Home Page](assets/home-preview.png)
-
-### About Page
-
-![About Page](assets/about-preview.png)
-
-### Contact Page
-
-![Contact Page](assets/contact-preview.png)
 
 ---
 
