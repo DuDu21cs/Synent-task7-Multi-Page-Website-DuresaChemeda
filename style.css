@@ -1,3 +1,14 @@
+TABLE OF CONTENTS
+   --------------------------------------------------
+   1. Reset & Variables
+   2. Global Styles
+   3. Navigation
+   4. Buttons
+   5. Sections
+   6. Cards
+   7. Footer
+   8. Responsive
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -32,7 +43,7 @@ body {
 ::-webkit-scrollbar-track { background: var(--bg-soft); }
 ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
-/* ── NAV ── */
+/* ── NAVIGATION ── */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
